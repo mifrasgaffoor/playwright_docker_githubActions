@@ -22,7 +22,7 @@ jobs:
       - name: Clean previous Allure reports
         run: |
           rm -rf allure-report
-          rm -rf docs/*
+          rm -rf docs/*  # Cleans the docs folder (be sure no important files are in it)
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
@@ -38,6 +38,8 @@ jobs:
       - name: Generate Allure Report
         run: |
           npm run allure:generate
+          # Check if the allure-report folder is generated and has contents
+          ls allure-report || echo "Allure report not generated!"
           mkdir -p docs  # Ensure the docs folder exists
           mv allure-report/* docs/  # Move only the contents of allure-report
 
@@ -71,6 +73,5 @@ jobs:
       - name: Send Allure Report URL to Slack
         run: |
           curl -X POST -H 'Content-type: application/json' --data '{
-            "text": "The latest Allure Report is available at: https://<your-github-user>.github.io/<your-repo-name>/"
-          }' ${{ secrets.SLACK_WEBHOOK_URL }}
-  
+            "text": "The latest Allure Report is available at: https://<your-github-user>.github.io/<your-repo-name>/docs/"
+          }' ${{ secrets.https://hooks.slack.com/services/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 }}
