@@ -74,7 +74,7 @@ jobs:
     steps:
       - name: Send Allure Report URL to Slack
         run: |
-          SLACK_REPORT_URL="https://${{ github.repository_owner }}.github.io/${{ github.repository }}/"
+          SLACK_REPORT_URL="https://${{ github.repository_owner }}.github.io/${{ github.repository }}"
           curl -X POST -H 'Content-type: application/json' --data '{
-            "text": "The latest Allure Report is available at: '"${SLACK_REPORT_URL}"'"
-          }' ${{ secrets.SLACK_WEBHOOK_URL }}
+          "text": "The latest Allure Report is available at: '"${SLACK_REPORT_URL}"'"
+           }' ${{ secrets.SLACK_WEBHOOK_URL }}
