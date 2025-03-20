@@ -33,7 +33,8 @@ jobs:
       - name: Generate Allure Report
         run: |
           npm run allure:generate
-          mv allure-report docs  # Move the report to 'docs' for GitHub Pages
+          mkdir -p docs  # Ensure the docs folder exists
+          mv allure-report/* docs/  # Move only the contents of allure-report
 
       - name: Commit and Push Report
         run: |
@@ -55,4 +56,4 @@ jobs:
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./docs
+          publish_dir: docs  # Corrected publish directory
