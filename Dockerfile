@@ -1,23 +1,18 @@
-# Use the official Playwright image with dependencies
-FROM mcr.microsoft.com/playwright:v1.41.0
+# Use Playwright’s official image
+FROM mcr.microsoft.com/playwright:v1.51.1-focal
 
-# Set the working directory inside the container
+# Set working directory
 WORKDIR /app
 
-# Copy package.json and package-lock.json to install dependencies first (improves caching)
+# Copy package files and install dependencies
 COPY package.json package-lock.json ./
+RUN npm ci
 
-# Install dependencies
-RUN npm install
-
-# Copy the rest of the project files
+# Copy all test files
 COPY . .
 
-# Install Playwright browsers
+# Install Playwright Browsers
 RUN npx playwright install --with-deps
 
-# Install Allure Playwright reporter
-RUN npm install --save-dev allure-playwright
-
-# Run Playwright tests and generate Allure report
-CMD ["npx", "playwright", "test", "--reporter=allure"]
+# Run Playwright tests inside the container
+CMD ["npm", "test"]
