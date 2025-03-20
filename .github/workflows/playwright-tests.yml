@@ -74,4 +74,4 @@ jobs:
         run: |
           curl -X POST -H 'Content-type: application/json' --data '{
             "text": "The latest Allure Report is available at: https://<your-github-user>.github.io/<your-repo-name>/docs/"
-          }' ${{ secrets.https://hooks.slack.com/services/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 }}
+          }' ${{ secrets.SLACK_WEBHOOK_URL }}
