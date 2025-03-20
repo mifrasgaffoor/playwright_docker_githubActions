@@ -19,6 +19,9 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Clean previous Allure reports
+        run: rm -rf allure-report  # Clean the previous Allure reports
+
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
 
