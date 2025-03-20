@@ -22,6 +22,7 @@ jobs:
       - name: Clean previous Allure reports
         run: |
           rm -rf allure-report
+          rm -rf allure-results
           rm -rf docs/*  # Cleans the docs folder (be sure no important files are in it)
 
       - name: Set up Docker Buildx
