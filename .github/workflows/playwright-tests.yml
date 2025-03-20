@@ -77,7 +77,7 @@ jobs:
     steps:
       - name: Send Allure Report URL to Slack
         run: |
-          S3_URL="https://s3.eu-north-1.amazonaws.com/testreportallure/index.html"
+          S3_URL="https://s3.us-east-1.amazonaws.com/testreportallure/index.html"
           curl -X POST -H 'Content-type: application/json' --data '{
-          "text": "The latest Allure Report is available at: '"${S3_URL}"'"
+          "text": "The latest Test Results Allure Report is available at: '"${S3_URL}"'"
            }' ${{ secrets.SLACK_WEBHOOK_URL }}
