@@ -20,7 +20,9 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Clean previous Allure reports
-        run: rm -rf allure-report  # Clean the previous Allure reports
+        run: |
+          rm -rf allure-report  # Clean the previous Allure reports
+          rm -rf docs/*  # Ensure docs is empty before generating new reports
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
