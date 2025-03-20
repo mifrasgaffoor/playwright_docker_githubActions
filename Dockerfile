@@ -1,18 +1,12 @@
-# Use Playwright’s official image
-FROM mcr.microsoft.com/playwright:v1.51.1-focal
+# Use Playwright's official image
+FROM mcr.microsoft.com/playwright:v1.28.0-focal  # Change to the correct version
 
-# Set working directory
+# Set the working directory
 WORKDIR /app
 
-# Copy package files and install dependencies
-COPY package.json package-lock.json ./
+# Install required dependencies and setup Playwright
+COPY . .
 RUN npm ci
 
-# Copy all test files
-COPY . .
-
-# Install Playwright Browsers
-RUN npx playwright install --with-deps
-
-# Run Playwright tests inside the container
+# Run tests
 CMD ["npm", "test"]
