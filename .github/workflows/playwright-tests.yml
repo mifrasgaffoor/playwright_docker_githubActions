@@ -68,7 +68,7 @@ jobs:
 
       - name: Upload Allure Report to S3
         run: |
-          aws s3 cp docs/ s3://testreportallure/ --recursive --region eu-north-1
+          aws s3 cp docs/ s3://testreportallure/ --recursive --region us-east-1
 
   notify:
     needs: upload_to_s3
